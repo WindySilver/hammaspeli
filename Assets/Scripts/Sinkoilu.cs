@@ -102,7 +102,7 @@ public class Sinkoilu : MonoBehaviour
 
     void Sinkouta(){
         arrow.enabled = false;
-        if(lDirection.y < 0) lDirection.y = lDirection.y * -1;
+        lDirection.y = Mathf.Abs(lDirection.y);
         if (!_attached) rigid.AddForce(lDirection*10, ForceMode2D.Impulse);
         else if (_attached) rigid.AddForce(lDirection*-10, ForceMode2D.Impulse);
         Debug.Log(lDirection*10);
