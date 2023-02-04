@@ -19,7 +19,6 @@ public class CrumplingPlatform : MonoBehaviour
     private IEnumerator spawnDelay()
     {
         gameObject.GetComponent<Renderer>().enabled = false;
-            //material.color.a = 1; SetActive(false);
         yield return new WaitForSeconds(5);
         gameObject.GetComponent<Renderer>().enabled = true;
     }
