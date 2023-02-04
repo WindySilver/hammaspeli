@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using Unity.Mathematics;
 public class Sinkoilu : MonoBehaviour
 {
     public GameObject character;
-    public Image arrow;
+    public SpriteRenderer arrow;
     public float grabProtectionTime = 0.2f;
     public float grabTime = 5.0f;
     private bool _attached = false;
@@ -19,7 +20,21 @@ public class Sinkoilu : MonoBehaviour
     private bool backwards = true;
     private Vector3 lDirection;
 	private PlayerAudioHandler _audioHandler;
+    [SerializeField] private GameObject aimPoint;
+    
+    public float speed = 2.0f;
+    private bool isGrounded;
+    private float jumpPower = 20f;
+    private float jumpModifier = 0;
+    private Rigidbody2D rigidbody2d;
+    float smooth = 5.0f;
+    float tiltAngle = 60.0f;
+    private Vector3 rotation;
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        grabToCeiling();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +49,40 @@ public class Sinkoilu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            if(!_audioHandler.isPlaying) _audioHandler.PlaySquelch();
+            if (_attached){
+                _grabTimer -= Time.deltaTime;
+        
+                if(_protectionTimer > 0){
+                    _protectionTimer -= Time.deltaTime;
+                }
+                else if((Input.anyKey && !(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))) || (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) || _grabTimer <= 0){
+                    unGrab();
+                }
+            }
+        }
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
+            transform.position += Vector3.left* speed * Time.deltaTime;
+            if(!_audioHandler.isPlaying)_audioHandler.PlaySquelch();
+            if (_attached){
+                _grabTimer -= Time.deltaTime;
+        
+                if(_protectionTimer > 0){
+                    _protectionTimer -= Time.deltaTime;
+                }
+                else if((Input.anyKey && !(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))) || (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) || _grabTimer <= 0){
+                    unGrab();
+                }
+            }
+        }
+        
         if (!_attached && rigid.velocity.y > 0 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
             grabToCeiling();
         }
-
+        /*
         if (_attached){
             _grabTimer -= Time.deltaTime;
         
@@ -48,19 +93,44 @@ public class Sinkoilu : MonoBehaviour
                 unGrab();
             }
         }
+        */
 
-        if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)){
-            aimSinkous();
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            CheckIfOnTheGround();
+           // _audioHandler.PlayJump();
+            aimSinkous2();
+                //float jumpBoost = math.clamp(jumpModifier, 0f, 4f);
+                //rigidbody2d.AddForce(new Vector2(0f, jumpPower + jumpBoost), ForceMode2D.Impulse);
         }
 
-        if(Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)){
-            Sinkouta();
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            CheckIfOnTheGround();
+            if (isGrounded)
+            {
+                Sinkouta2();
+                isGrounded = false;
+                _angle = 0;
+            }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            CheckIfOnTheGround();
+            if (isGrounded)
+            {
+                Sinkouta3();
+                isGrounded = false;
+                //_angle = 0;
+            }
         }
     }
 
     // Turns the player around and makes it grab to the ceiling
     void grabToCeiling(){
-        _audioHandler.PlaySplat();
+        //_audioHandler.PlaySplat();
         _attached = true;
         character.transform.Rotate(0, 0, 180);
         rigid.gravityScale = -1;
@@ -77,39 +147,153 @@ public class Sinkoilu : MonoBehaviour
     }
 
     void aimSinkous(){
-        if(!_audioHandler.isPlaying) _audioHandler.PlayAim();
+        //if(!_audioHandler.isPlaying) _audioHandler.PlayAim();
         arrow.enabled = true;
         lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
-        
-            if (forward && _angle < 180){
-                lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
-                _angle = _angle + 0.5f;
-            }
-            else if(backwards && _angle > -180){
-                lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
-                _angle = _angle - 0.5f;
-            }
-            else if(_angle == 180){
-                forward = false;
-                backwards = true;
-            }
-            else if(_angle == -180){
-                forward = true;
-                backwards = false;
-            }
-            //Debug.Log(lDirection);
 
-        if(_angle % 10 == 0){
-            arrow.transform.Rotate(0, 0, _angle);
+
+        if (forward && _angle < 90){
+            lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
+            _angle = _angle + 1f;
         }
+        else if(backwards && _angle > -90){
+            lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
+            _angle = _angle - 1f;
+        }
+        else if(_angle == 90){
+            forward = false;
+            backwards = true;
+        }
+        else if(_angle == -90){
+            forward = true;
+            backwards = false;
+        }
+        //Debug.Log(lDirection);
+
+        // Smoothly tilts a transform towards a target rotation.
+
+
+        // Rotate the cube by converting the angles into a quaternion.
+        Quaternion target = Quaternion.Euler(0, 0, _angle);
+
+        // Dampen towards the target rotation
+        arrow.transform.rotation = Quaternion.Slerp(arrow.transform.rotation, target,  Time.deltaTime * smooth);
+
+    }
+    void aimSinkous2(){
+        //if(!_audioHandler.isPlaying) _audioHandler.PlayAim();
+        arrow.enabled = true;
+        if (forward){
+            //lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
+            //lDirection = lDirection + new Vector3();
+            _angle = _angle + 0.1f;
+            //rotation = rotation + new Vector3(arrow.transform.rotation.x, arrow.transform.rotation.y, -0.1f);
+            arrow.transform.Rotate(new Vector3(arrow.transform.rotation.x, arrow.transform.rotation.y, -0.1f));
+        }
+        else if(backwards){
+            //lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
+            _angle = _angle - 0.1f;
+            arrow.transform.Rotate(new Vector3(arrow.transform.rotation.x, arrow.transform.rotation.y,  +0.1f));
+        }
+        else if(_angle == 90){
+            forward = false;
+            backwards = true;
+        }
+        else if(_angle == -90){
+            forward = true;
+            backwards = false;
+        }
+        //Debug.Log(lDirection);
+
+        // Smoothly tilts a transform towards a target rotation.
+        //Vector3 rotationToAdd = new Vector3(0, 90, 0);
+
+        //transform.Rotate(rotationToAdd);
+
+        // Rotate the cube by converting the angles into a quaternion.
+        //Quaternion target = Quaternion.Euler(0, 0, _angle);
+        //transform.RotateAround(target.transform.position, Vector3.up, 20 * Time.deltaTime);
+
+        // Dampen towards the target rotation
+        //arrow.transform.rotation = Quaternion.Slerp(arrow.transform.rotation, target,  Time.deltaTime * smooth);
+        arrow.transform.Rotate(rotation);
     }
 
     void Sinkouta(){
         _audioHandler.PlayYippee();
         arrow.enabled = false;
         lDirection.y = Mathf.Abs(lDirection.y);
-        if (!_attached) rigid.AddForce(lDirection*10, ForceMode2D.Impulse);
-        else if (_attached) rigid.AddForce(lDirection*-10, ForceMode2D.Impulse);
+        if (!_attached) rigid.AddForce(lDirection*20, ForceMode2D.Impulse);
+        else if (_attached) rigid.AddForce(lDirection*-20, ForceMode2D.Impulse);
         Debug.Log(lDirection*10);
+    }
+    
+    void Sinkouta2(){
+        //_audioHandler.PlayYippee();
+        arrow.enabled = false;
+        lDirection.y = Mathf.Abs(lDirection.y);
+        //transform.position = Vector3.MoveTowards(transform.position, aimPoint.transform.position, 0.1f);
+        rigid.AddForce(aimPoint.transform.position- transform.position, ForceMode2D.Impulse);
+       /*
+        Vector3 targ = aimPoint.transform.position;
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+ 
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        */
+        Debug.Log(lDirection*10);
+    }
+    
+    void Sinkouta3(){
+        //_audioHandler.PlayYippee();
+        
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z=Camera.main.nearClipPlane;
+        Vector3 Worldpos=Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
+        //Worldpos2D is required if you are making a 2D game
+        //arrow.enabled = false;
+        //lDirection.y = Mathf.Abs(lDirection.y);
+        //transform.position = Vector3.MoveTowards(transform.position, aimPoint.transform.position, 0.1f);
+        rigid.AddForce(((Worldpos - transform.position) *3), ForceMode2D.Impulse);
+        /*
+         Vector3 targ = aimPoint.transform.position;
+         Vector3 objectPos = transform.position;
+         targ.x = targ.x - objectPos.x;
+         targ.y = targ.y - objectPos.y;
+  
+         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+         */
+        Debug.Log(lDirection*10);
+    }
+    
+    // See Order of Execution for Event Functions for information on FixedUpdate() and Update() related to physics queries
+    void CheckIfOnTheGround()
+    {
+        //Vector3 blw = transform.TransformDirection(Vector3.down);
+        RaycastHit2D hitHead = Physics2D.Raycast(transform.position + new Vector3(0.09f, 0f, 0), -transform.up);
+        RaycastHit2D hitTail = Physics2D.Raycast(transform.position - new Vector3(0.09f, 0f, 0), -transform.up);
+        float distanceHead = 90f;
+        float distanceTail = 90f;
+        if (hitHead.collider != null)
+        {
+            distanceHead = Mathf.Abs(transform.position.y - hitHead.point.y);
+            Debug.DrawRay(transform.position + new Vector3(0.09f, 0f, 0), new Vector2(0f, -0.45f), Color.green, 10f);
+            Debug.DrawRay(transform.position - new Vector3(0.09f, 0f, 0), new Vector2(0f, -0.45f), Color.green, 10f);
+        }
+
+        if (hitTail.collider != null)
+        {
+            distanceTail = Mathf.Abs(transform.position.y - hitTail.point.y);
+        }
+
+        if (distanceHead < 1f || distanceTail < 1f)
+        {
+            isGrounded = true;
+           // _audioHandler.PlaySplat();
+        }
     }
 }

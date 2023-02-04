@@ -24,6 +24,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+	    /*
 	    if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
 			transform.position += Vector3.right * speed * Time.deltaTime;
 			if(!_audioHandler.isPlaying) _audioHandler.PlaySquelch();
@@ -32,7 +33,8 @@ public class Move : MonoBehaviour
 			transform.position += Vector3.left* speed * Time.deltaTime;
 			if(!_audioHandler.isPlaying)_audioHandler.PlaySquelch();
 		}
-		
+		*/
+		/*
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CheckIfOnTheGround();
@@ -45,6 +47,8 @@ public class Move : MonoBehaviour
 				jumpModifier = 0;
 			}
 		}
+		*/
+		
 		// See Order of Execution for Event Functions for information on FixedUpdate() and Update() related to physics queries
 		void CheckIfOnTheGround()
 		{
@@ -60,12 +64,13 @@ public class Move : MonoBehaviour
 			}
 			if (hitTail.collider != null ){
 				distanceTail= Mathf.Abs(transform.position.y -hitTail.point.y);
-			}   
-			if (distanceHead < 1f || distanceTail < 1f){
-					isGrounded = true;
-					_audioHandler.PlaySplat();
-				}
-            
+			}
+
+			if (distanceHead < 1f || distanceTail < 1f)
+			{
+				isGrounded = true;
+				_audioHandler.PlaySplat();
+			}
 			//Debug.Log(isGrounded);
 		}
     }
