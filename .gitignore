@@ -64,3 +64,5 @@ crashlytics-build.properties
 
 # Unity's Plastic thing, probably not needed
 .plastic
+
+UserSettings/
