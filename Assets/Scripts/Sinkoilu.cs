@@ -30,7 +30,6 @@ public class Sinkoilu : MonoBehaviour
     float smooth = 5.0f;
     float tiltAngle = 60.0f;
     private Vector3 rotation;
-
     private void OnCollisionEnter(Collision collision)
     {
         grabToCeiling();
@@ -50,7 +49,6 @@ public class Sinkoilu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
             transform.position += Vector3.right * speed * Time.deltaTime;
             if(!_audioHandler.isPlaying) _audioHandler.PlaySquelch();
@@ -94,17 +92,7 @@ public class Sinkoilu : MonoBehaviour
                 unGrab();
             }
         }
-        */
-
-
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            CheckIfOnTheGround();
-           // _audioHandler.PlayJump();
-            aimSinkous2();
-                //float jumpBoost = math.clamp(jumpModifier, 0f, 4f);
-                //rigidbody2d.AddForce(new Vector2(0f, jumpPower + jumpBoost), ForceMode2D.Impulse);
-        }
+        
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -116,6 +104,7 @@ public class Sinkoilu : MonoBehaviour
                 _angle = 0;
             }
         }
+        */
         
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -135,7 +124,8 @@ public class Sinkoilu : MonoBehaviour
         _attached = true;
         character.transform.Rotate(0, 0, 180);
         rigid.gravityScale = 0;
-
+        rigid.velocity = Vector2.zero;
+        rigid.angularVelocity = 0;
     }
 
     // Player ungrabs and falls down
@@ -253,7 +243,9 @@ public class Sinkoilu : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z=Camera.main.nearClipPlane;
         Vector3 Worldpos=Camera.main.ScreenToWorldPoint(mousePos);
-        rigid.AddForce(((Worldpos - transform.position) *3), ForceMode2D.Impulse);
+        Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
+        Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
+        rigid.AddForce(((Worldpos2D - pos2D) *3), ForceMode2D.Impulse);
         /*
         Vector3 targ = Worldpos;
         Vector3 objectPos = transform.position;
@@ -265,8 +257,8 @@ public class Sinkoilu : MonoBehaviour
         */
         
         //transform.rotation = Quaternion.LookRotation(Worldpos, Vector3.up);
-        Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
-        transform.up = Worldpos2D - new Vector2(transform.position.x, transform.position.y); 
+        
+        transform.up = Worldpos2D - pos2D; 
         Debug.Log(lDirection*10);
     }
     
