@@ -18,6 +18,7 @@ public class Sinkoilu : MonoBehaviour
     private bool forward = false;
     private bool backwards = true;
     private Vector3 lDirection;
+	private PlayerAudioHandler _audioHandler;
 
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class Sinkoilu : MonoBehaviour
         _grabTimer = grabTime;
         rigid = character.GetComponent<Rigidbody2D>();
         arrow.enabled = false;
+		_audioHandler = GetComponent<PlayerAudioHandler>();
     }
 
     // Update is called once per frame
@@ -58,6 +60,7 @@ public class Sinkoilu : MonoBehaviour
 
     // Turns the player around and makes it grab to the ceiling
     void grabToCeiling(){
+        _audioHandler.PlaySplat();
         _attached = true;
         character.transform.Rotate(0, 0, 180);
         rigid.gravityScale = -1;
@@ -74,6 +77,7 @@ public class Sinkoilu : MonoBehaviour
     }
 
     void aimSinkous(){
+        if(!_audioHandler.isPlaying) _audioHandler.PlayAim();
         arrow.enabled = true;
         lDirection = new Vector3(Mathf.Cos(Mathf.Deg2Rad * _angle), Mathf.Sin(Mathf.Deg2Rad * _angle), 0);
         
@@ -101,6 +105,7 @@ public class Sinkoilu : MonoBehaviour
     }
 
     void Sinkouta(){
+        _audioHandler.PlayYippee();
         arrow.enabled = false;
         lDirection.y = Mathf.Abs(lDirection.y);
         if (!_attached) rigid.AddForce(lDirection*10, ForceMode2D.Impulse);

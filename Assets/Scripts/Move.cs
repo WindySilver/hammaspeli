@@ -12,21 +12,25 @@ public class Move : MonoBehaviour
     private float jumpPower = 20f;
     private float jumpModifier = 0;
     private Rigidbody2D rigidbody2d;
+	private PlayerAudioHandler _audioHandler;
 
     // Start is called before the first frame update
     void Start()
     {
 	    rigidbody2d = GetComponent<Rigidbody2D>();
+		_audioHandler = GetComponent<PlayerAudioHandler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-	    if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
+	    if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
 			transform.position += Vector3.right * speed * Time.deltaTime;
+			if(!_audioHandler.isPlaying) _audioHandler.PlaySquelch();
 		}
-		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
 			transform.position += Vector3.left* speed * Time.deltaTime;
+			if(!_audioHandler.isPlaying)_audioHandler.PlaySquelch();
 		}
 		
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -34,7 +38,7 @@ public class Move : MonoBehaviour
 			CheckIfOnTheGround();
 			if (isGrounded)
 			{
-				//audio.Play();
+				_audioHandler.PlayJump();
 				float jumpBoost = math.clamp(jumpModifier, 0f, 4f);
 				rigidbody2d.AddForce(new Vector2(0f, jumpPower + jumpBoost), ForceMode2D.Impulse);
 				isGrounded = false;
@@ -57,9 +61,11 @@ public class Move : MonoBehaviour
 			if (hitTail.collider != null ){
 				distanceTail= Mathf.Abs(transform.position.y -hitTail.point.y);
 			}   
-			if (distanceHead < 1f || distanceTail < 1f) isGrounded = true;
+			if (distanceHead < 1f || distanceTail < 1f){
+					isGrounded = true;
+					_audioHandler.PlaySplat();
+				}
             
-                    
 			//Debug.Log(isGrounded);
 		}
     }
