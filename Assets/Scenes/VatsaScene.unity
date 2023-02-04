@@ -1199,6 +1199,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!212 &279030999 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7157230562621918808, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
+  m_PrefabInstance: {fileID: 1094117476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &336378925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,6 +2644,10 @@ PrefabInstance:
     - target: {fileID: 4802569651414035561, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
       propertyPath: arrow
       value: 
+      objectReference: {fileID: 279030999}
+    - target: {fileID: 4874298341312589916, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5550363127402106918, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
       propertyPath: m_Pivot.x
@@ -2749,6 +2758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2785098471161669720, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2785098471161669724, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2831,6 +2844,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2785098471161669724, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407086416793264100, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

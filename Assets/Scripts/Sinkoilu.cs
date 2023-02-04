@@ -44,6 +44,7 @@ public class Sinkoilu : MonoBehaviour
         rigid = character.GetComponent<Rigidbody2D>();
         arrow.enabled = false;
 		_audioHandler = GetComponent<PlayerAudioHandler>();
+        //transform.forward = Vector3.up;
     }
 
     // Update is called once per frame
@@ -129,11 +130,11 @@ public class Sinkoilu : MonoBehaviour
     }
 
     // Turns the player around and makes it grab to the ceiling
-    void grabToCeiling(){
+    public void grabToCeiling(){
         //_audioHandler.PlaySplat();
         _attached = true;
         character.transform.Rotate(0, 0, 180);
-        rigid.gravityScale = -1;
+        rigid.gravityScale = 0;
 
     }
 
@@ -252,21 +253,20 @@ public class Sinkoilu : MonoBehaviour
         Vector3 mousePos = Input.mousePosition;
         mousePos.z=Camera.main.nearClipPlane;
         Vector3 Worldpos=Camera.main.ScreenToWorldPoint(mousePos);
-        Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
-        //Worldpos2D is required if you are making a 2D game
-        //arrow.enabled = false;
-        //lDirection.y = Mathf.Abs(lDirection.y);
-        //transform.position = Vector3.MoveTowards(transform.position, aimPoint.transform.position, 0.1f);
         rigid.AddForce(((Worldpos - transform.position) *3), ForceMode2D.Impulse);
         /*
-         Vector3 targ = aimPoint.transform.position;
-         Vector3 objectPos = transform.position;
-         targ.x = targ.x - objectPos.x;
-         targ.y = targ.y - objectPos.y;
-  
-         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-         */
+        Vector3 targ = Worldpos;
+        Vector3 objectPos = transform.position;
+        targ.x = targ.x - objectPos.x;
+        targ.y = targ.y - objectPos.y;
+
+        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        */
+        
+        //transform.rotation = Quaternion.LookRotation(Worldpos, Vector3.up);
+        Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
+        transform.up = Worldpos2D - new Vector2(transform.position.x, transform.position.y); 
         Debug.Log(lDirection*10);
     }
     
