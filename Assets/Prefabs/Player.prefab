@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5550363127402106918}
   - component: {fileID: 5550363127402106924}
   - component: {fileID: 5550363127402106920}
+  - component: {fileID: 6134554996391367769}
+  - component: {fileID: 4802569651414035561}
   - component: {fileID: 5550363127402106923}
   - component: {fileID: 5550363127402106922}
   - component: {fileID: 5550363127402106921}
-  - component: {fileID: 6134554996391367769}
-  - component: {fileID: 4802569651414035561}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -110,6 +110,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   character: {fileID: 5550363127402106927}
+--- !u!114 &6134554996391367769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550363127402106927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04fc742e7f489b42b333ca555d7930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  healthText: {fileID: 0}
+--- !u!114 &4802569651414035561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550363127402106927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a92b9551fd50b4d92f051bd34c9106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 5550363127402106927}
+  arrow: {fileID: 0}
+  grabProtectionTime: 0.2
+  grabTime: 5
 --- !u!58 &5550363127402106923
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +176,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!222 &5550363127402106921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -155,33 +185,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550363127402106927}
   m_CullTransparentMesh: 1
---- !u!114 &6134554996391367769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550363127402106927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a04fc742e7f489b42b333ca555d7930d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 5
-  healthText: {fileID: 0}
---- !u!114 &4802569651414035561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5550363127402106927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09a92b9551fd50b4d92f051bd34c9106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 5550363127402106927}
 --- !u!1 &5550363127413807042
 GameObject:
   m_ObjectHideFlags: 0

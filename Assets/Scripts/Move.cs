@@ -60,7 +60,7 @@ public class Move : MonoBehaviour
 			if (distanceHead < 1f || distanceTail < 1f) isGrounded = true;
             
                     
-			Debug.Log(isGrounded);
+			//Debug.Log(isGrounded);
 		}
     }
 }
