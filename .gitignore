@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Kate's directory setting thingy
+.directory
+
+# Unity's Plastic thing, probably not needed
+.plastic
