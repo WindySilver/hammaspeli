@@ -58,8 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-#Kate's directory setting thingy
+#Kate's directory setting and vscode thingies
 .directory
+.vscode
 
 # Unity's Plastic thing, probably not needed
 .plastic
