@@ -254,6 +254,8 @@ public class Sinkoilu : MonoBehaviour
         Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
         //Vector2 down2D = new Vector2(transform.up.x, transform.up.y);
         rigid.AddForce(((Vector2.down - pos2D)), ForceMode2D.Impulse);
+        rigid.gravityScale = 1;
+        
     }
     
     public void rebelUp()
@@ -261,6 +263,7 @@ public class Sinkoilu : MonoBehaviour
         Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
         //Vector2 down2D = new Vector2(transform.up.x, transform.up.y);
         rigid.AddForce(((Vector2.up - pos2D)), ForceMode2D.Impulse);
+        rigid.gravityScale = 1;
     }
     
     // See Order of Execution for Event Functions for information on FixedUpdate() and Update() related to physics queries

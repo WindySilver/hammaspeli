@@ -12,6 +12,8 @@ public class WormMovement : MonoBehaviour
     private float speed = 0.08f;
     private bool start;
     private int exitNodeNmr;
+    private bool exiting;
+    private EnemyHealthSystem _enemyHealthSystem;
 
     private void Start()
     {
@@ -21,6 +23,7 @@ public class WormMovement : MonoBehaviour
         nodes1 = rata1.getNodes();
         node = nodes1[0];
         exitNodeNmr = rata1.getExitNodeNmr();
+        _enemyHealthSystem = GetComponentInParent<EnemyHealthSystem>();
     }
 
     // Update is called once per frame
@@ -34,9 +37,13 @@ public class WormMovement : MonoBehaviour
             {
                 nodeNmr++;
             }
-            else if(exitNodeNmr != 0)
+            else if(!_enemyHealthSystem.checkIfDead())
             {
                 nodeNmr = 0;
+            }
+            else
+            {
+                exitNodeNmr = 0;
             }
             node = nodes1[nodeNmr];
         } 
@@ -57,7 +64,11 @@ public class WormMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         start = true;
+    }
 
+    public void SetEnd()
+    {
+        exiting = true;
     }
 
 }

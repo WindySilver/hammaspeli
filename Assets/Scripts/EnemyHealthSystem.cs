@@ -17,7 +17,6 @@ public class EnemyHealthSystem : MonoBehaviour
     {
         currentHealth = maxHealth;
         setHealthText();
-        
     }
 
     // Update is called once per frame
@@ -51,5 +50,10 @@ public class EnemyHealthSystem : MonoBehaviour
     // Sets or updates the health text 
     public void setHealthText(){
         healthText.text = "Enemy Health: " + currentHealth;
+    }
+
+    public bool checkIfDead()
+    {
+        return _dead;
     }
 }
