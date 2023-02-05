@@ -933,7 +933,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RETURNIN TO YOUR ROOTS, TEO TOOTH!
+  m_Text: RETURN TO YOUR ROOTS, TEO TOOTH!
 --- !u!222 &1059653701
 CanvasRenderer:
   m_ObjectHideFlags: 0
