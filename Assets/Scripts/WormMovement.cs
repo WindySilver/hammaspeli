@@ -14,6 +14,7 @@ public class WormMovement : MonoBehaviour
     private int exitNodeNmr;
     private bool exiting;
     private EnemyHealthSystem _enemyHealthSystem;
+    [SerializeField] private GameObject ranskalainen;
 
     private void Start()
     {
@@ -69,6 +70,10 @@ public class WormMovement : MonoBehaviour
     public void SetEnd()
     {
         exiting = true;
+        if (ranskalainen != null)
+        {
+            ranskalainen.SetActive(false);
+        }
     }
 
 }
