@@ -53,7 +53,7 @@ public class WormMovement : MonoBehaviour
     }
     private IEnumerator StartDelay()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         start = true;
 
     }
