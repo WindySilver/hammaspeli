@@ -214,6 +214,10 @@ PrefabInstance:
       value: Mato
       objectReference: {fileID: 0}
     - target: {fileID: 8596919700591589316, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
+      propertyPath: maxHealth
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596919700591589316, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 514843578}
@@ -855,6 +859,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4802569651414035561, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
+      propertyPath: enemyImmunity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5550363127402106918, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1098,7 +1106,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.20379281}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1109,7 +1117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5924144}
   m_EdgeRadius: 0
 --- !u!212 &1859835239
 SpriteRenderer:

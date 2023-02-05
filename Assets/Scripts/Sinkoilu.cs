@@ -33,7 +33,7 @@ public class Sinkoilu : MonoBehaviour
     private Vector3 rotation;
     private Sinkoilu _sinkoilu;
 
-    [SerializeField] private int enemyImmunity = 2;
+    [SerializeField] private int enemyImmunity = 1;
     [SerializeField] private int playerImmunity = 2;
     [SerializeField] private GameObject player;
     private float _immunityTimer;
