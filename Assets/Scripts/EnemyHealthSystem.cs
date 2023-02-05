@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HealthSystem : MonoBehaviour
+public class EnemyHealthSystem : MonoBehaviour
 {
 
-    public int maxHealth = 5;
+    public double maxHealth = 5;
     public TextMeshProUGUI healthText;
-    private int currentHealth;
+    private double currentHealth;
     private bool _dead = false;
 
     // Start is called before the first frame update
@@ -24,18 +24,18 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         if(_dead){
-            Defeated();
+            EnemyDefeated();
         }
     }
 
-    void Defeated(){
-        healthText.text = "You has been vanquished!";
-        Object.Destroy(this.gameObject);
+    void EnemyDefeated(){
+        healthText.text = "";
+        // Mato lähtee kurkkuun
     }
 
     // Decreases current health (e.g. when hit by something that damages player)
     public void decreaseHealth(){
-        currentHealth--;
+        currentHealth-= 0.5;
         setHealthText();
         if (currentHealth <=0){
             _dead = true;
@@ -50,6 +50,6 @@ public class HealthSystem : MonoBehaviour
 
     // Sets or updates the health text 
     public void setHealthText(){
-        healthText.text = "Tooth Health: " + currentHealth;
+        healthText.text = "Enemy Health: " + currentHealth;
     }
 }

@@ -30,10 +30,6 @@ public class Sinkoilu : MonoBehaviour
     float smooth = 5.0f;
     float tiltAngle = 60.0f;
     private Vector3 rotation;
-    private void OnCollisionEnter(Collision collision)
-    {
-        grabToCeiling();
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -293,9 +289,5 @@ public class Sinkoilu : MonoBehaviour
             isGrounded = true;
            // _audioHandler.PlaySplat();
         }
-    }
-
-    void OnCollisionEnter2D(Collision2D collision){
-        _audioHandler.PlaySplat();
     }
 }
