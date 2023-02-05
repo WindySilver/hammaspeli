@@ -8,7 +8,9 @@ public class MusicHandler : MonoBehaviour
     [SerializeField] private List<AudioClip> _background;
     [SerializeField] private List<AudioClip> _boss;
     [SerializeField] private List<AudioClip> _death;
+    [SerializeField] private List<AudioClip> _suoli;
     [SerializeField] private AudioSource _musicSource;
+    public bool suoli = false;
     public bool background = true;
     public bool boss = false;
 
@@ -27,6 +29,13 @@ public class MusicHandler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlaySuoli()
+    {
+        var clip = Random.Range(0, _suoli.Count);
+        _musicSource.clip = _suoli[clip];
+        _musicSource.Play();
     }
 
     public void PlayBackground()

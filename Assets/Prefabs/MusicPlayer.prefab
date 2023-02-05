@@ -148,6 +148,9 @@ MonoBehaviour:
   _death:
   - {fileID: 8300000, guid: acaf04e21d7f7df87844b1c25d234a81, type: 3}
   - {fileID: 8300000, guid: 1ad0b113c2d12410fbc5987f10ae28ec, type: 3}
+  _suoli:
+  - {fileID: 8300000, guid: f43aee55af1507a79aedccdc2c3fd394, type: 3}
   _musicSource: {fileID: 6549629068810873809}
+  suoli: 0
   background: 1
   boss: 1
