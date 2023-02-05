@@ -12,8 +12,8 @@ public class SceneManagementScript : MonoBehaviour
     }
 
     public void LoadGame(){
-        SceneManager.LoadScene("VatsaScene");
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("VatsaScene"));
+        SceneManager.LoadScene("SuoliScene");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SuoliScene"));
     }
 
     public void QuitGame()
