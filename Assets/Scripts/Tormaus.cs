@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Tormaus : MonoBehaviour
 {
-    [SerializeField] private int enemyImmunity = 5;
+    [SerializeField] private int enemyImmunity = 2;
+    [SerializeField] private int playerImmunity = 2;
     [SerializeField] private GameObject player;
 
     private Sinkoilu _sinkoilu;
     private PlayerAudioHandler _audioHandler;
     private float _immunityTimer;
+    private float _playerTimer;
     
 
     // Start is called before the first frame update
@@ -18,11 +20,15 @@ public class Tormaus : MonoBehaviour
         _sinkoilu = player.GetComponent<Sinkoilu>();
         _audioHandler = player.GetComponent<PlayerAudioHandler>();
         _immunityTimer = 0;
+        _playerTimer = 0;
     }
 
     void Update(){
         if(_immunityTimer > 0){
             _immunityTimer -= Time.deltaTime;
+        }
+        if(_playerTimer > 0){
+            _playerTimer -= Time.deltaTime;
         }
     }
     
@@ -39,8 +45,11 @@ public class Tormaus : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Acid"))
         {
+            if(_playerTimer <= 0){
+            _playerTimer = playerImmunity;
             _sinkoilu.rebelUp();
             player.GetComponent<HealthSystem>().decreaseHealth();
+            }
         }
         else
         {
