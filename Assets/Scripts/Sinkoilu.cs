@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
+using UnityEngine.SceneManagement;
 
 public class Sinkoilu : MonoBehaviour
 {
@@ -306,7 +307,9 @@ public class Sinkoilu : MonoBehaviour
 
         void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (SceneManager.GetActiveScene().name == "SuuScene")
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
         {
             if(_immunityTimer <= 0){
             _immunityTimer = enemyImmunity;
@@ -327,6 +330,7 @@ public class Sinkoilu : MonoBehaviour
         {
             //_sinkoilu.grabToCeiling();
             _audioHandler.PlaySplat();
+        } 
         }
     }
 }

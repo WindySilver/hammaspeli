@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tormaus : MonoBehaviour
 {
@@ -31,30 +32,35 @@ public class Tormaus : MonoBehaviour
             _playerTimer -= Time.deltaTime;
         }
     }
-    
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (SceneManager.GetActiveScene().name == "SuuScene")
         {
-            if(_immunityTimer <= 0){
-            _immunityTimer = enemyImmunity;
-            _sinkoilu.rebelDown();
-            collision.gameObject.transform.parent.GetComponent<EnemyHealthSystem>().decreaseHealth();
-            _audioHandler.PlayImpact();
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                if (_immunityTimer <= 0)
+                {
+                    _immunityTimer = enemyImmunity;
+                    _sinkoilu.rebelDown();
+                    collision.gameObject.transform.parent.GetComponent<EnemyHealthSystem>().decreaseHealth();
+                    _audioHandler.PlayImpact();
+                }
             }
-        }
-        else if(collision.gameObject.CompareTag("Acid"))
-        {
-            if(_playerTimer <= 0){
-            _playerTimer = playerImmunity;
-            _sinkoilu.rebelUp();
-            player.GetComponent<HealthSystem>().decreaseHealth();
+            else if (collision.gameObject.CompareTag("Acid"))
+            {
+                if (_playerTimer <= 0)
+                {
+                    _playerTimer = playerImmunity;
+                    _sinkoilu.rebelUp();
+                    player.GetComponent<HealthSystem>().decreaseHealth();
+                }
             }
-        }
-        else
-        {
-            _sinkoilu.grabToCeiling();
-            _audioHandler.PlaySplat();
+            else
+            {
+                _sinkoilu.grabToCeiling();
+                _audioHandler.PlaySplat();
+            }
         }
     }
 }
