@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainMenu.unity
+    guid: 218c8a0b0e834ca4e913033aad373c05
+  - enabled: 1
+    path: Assets/Scenes/SuoliScene.unity
+    guid: 2d66a732476a19948918687a32632482
+  - enabled: 1
+    path: Assets/Scenes/VatsaScene.unity
+    guid: 1f682f34297f0a228b0e26f10fb80ae6
+  - enabled: 1
+    path: Assets/Scenes/KurkkuScene.unity
+    guid: a166f914975c0ce4d995ccaf3e9c1e43
   m_configObjects: {}
