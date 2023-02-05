@@ -3490,6 +3490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2233337583451325383, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
+      propertyPath: ranskalainen
+      value: 
+      objectReference: {fileID: 1133995061}
     - target: {fileID: 2233337583859354890, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
       propertyPath: m_RootOrder
       value: 4

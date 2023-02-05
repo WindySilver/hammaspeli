@@ -32,7 +32,7 @@ public class Sinkoilu : MonoBehaviour
     private Vector3 rotation;
     private Sinkoilu _sinkoilu;
 
-        [SerializeField] private int enemyImmunity = 2;
+    [SerializeField] private int enemyImmunity = 2;
     [SerializeField] private int playerImmunity = 2;
     [SerializeField] private GameObject player;
     private float _immunityTimer;
@@ -325,7 +325,7 @@ public class Sinkoilu : MonoBehaviour
         }
         else
         {
-            _sinkoilu.grabToCeiling();
+            //_sinkoilu.grabToCeiling();
             _audioHandler.PlaySplat();
         }
     }
