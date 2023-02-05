@@ -73,11 +73,10 @@ public class Sinkoilu : MonoBehaviour
                 }
             }
         }
-        
+        /*
         if (!_attached && rigid.velocity.y > 0 && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))){
             grabToCeiling();
         }
-        /*
         if (_attached){
             _grabTimer -= Time.deltaTime;
         
