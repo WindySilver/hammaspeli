@@ -120,7 +120,7 @@ public class Sinkoilu : MonoBehaviour
 
     // Turns the player around and makes it grab to the ceiling
     public void grabToCeiling(){
-        //_audioHandler.PlaySplat();
+        _audioHandler.PlaySplat();
         _attached = true;
         character.transform.Rotate(0, 0, 180);
         rigid.gravityScale = 0;
@@ -234,11 +234,11 @@ public class Sinkoilu : MonoBehaviour
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         */
-        Debug.Log(lDirection*10);
+        //Debug.Log(lDirection*10);
     }
     
     void Sinkouta3(){
-        //_audioHandler.PlayYippee();
+        _audioHandler.PlayYippee();
         
         Vector3 mousePos = Input.mousePosition;
         mousePos.z=Camera.main.nearClipPlane;
@@ -251,7 +251,7 @@ public class Sinkoilu : MonoBehaviour
         rigid.AddForce((new Vector2(forceX, forceY)), ForceMode2D.Impulse);
         //rigid.AddForce(((Worldpos2D - pos2D) *3), ForceMode2D.Impulse);
         transform.up = Worldpos2D - pos2D; 
-        Debug.Log(lDirection*10);
+        //Debug.Log(lDirection*10);
     }
 
     public void rebelDown()
@@ -293,5 +293,9 @@ public class Sinkoilu : MonoBehaviour
             isGrounded = true;
            // _audioHandler.PlaySplat();
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision){
+        _audioHandler.PlaySplat();
     }
 }
