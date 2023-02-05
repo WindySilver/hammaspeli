@@ -245,7 +245,11 @@ public class Sinkoilu : MonoBehaviour
         Vector3 Worldpos=Camera.main.ScreenToWorldPoint(mousePos);
         Vector2 Worldpos2D = new Vector2(Worldpos.x, Worldpos.y);
         Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
-        rigid.AddForce(((Worldpos2D - pos2D) *3), ForceMode2D.Impulse);
+        float maxSpeed = 24;
+        float forceX = Mathf.Clamp((Worldpos.x - transform.position.x) *3, -maxSpeed, maxSpeed);
+        float forceY = Mathf.Clamp((Worldpos.y - transform.position.y) *3, -maxSpeed, maxSpeed);
+        rigid.AddForce((new Vector2(forceX, forceY)), ForceMode2D.Impulse);
+        //rigid.AddForce(((Worldpos2D - pos2D) *3), ForceMode2D.Impulse);
         /*
         Vector3 targ = Worldpos;
         Vector3 objectPos = transform.position;
