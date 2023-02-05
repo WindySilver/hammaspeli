@@ -45,6 +45,10 @@ public class WormMovement : MonoBehaviour
             else
             {
                 exitNodeNmr = 0;
+                if (ranskalainen != null)
+                {
+                    ranskalainen.SetActive(false);
+                }
             }
             node = nodes1[nodeNmr];
         } 
@@ -70,10 +74,6 @@ public class WormMovement : MonoBehaviour
     public void SetEnd()
     {
         exiting = true;
-        if (ranskalainen != null)
-        {
-            ranskalainen.SetActive(false);
-        }
     }
 
 }
