@@ -47,6 +47,7 @@ public class Sinkoilu : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)){
             transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.up = Vector3.up;
             if(!_audioHandler.isPlaying) _audioHandler.PlaySquelch();
             if (_attached){
                 _grabTimer -= Time.deltaTime;
@@ -61,6 +62,7 @@ public class Sinkoilu : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
             transform.position += Vector3.left* speed * Time.deltaTime;
+            transform.up = Vector3.up;
             if(!_audioHandler.isPlaying)_audioHandler.PlaySquelch();
             if (_attached){
                 _grabTimer -= Time.deltaTime;
