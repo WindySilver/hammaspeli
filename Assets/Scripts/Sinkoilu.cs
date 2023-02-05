@@ -30,6 +30,13 @@ public class Sinkoilu : MonoBehaviour
     float smooth = 5.0f;
     float tiltAngle = 60.0f;
     private Vector3 rotation;
+    private Sinkoilu _sinkoilu;
+
+        [SerializeField] private int enemyImmunity = 2;
+    [SerializeField] private int playerImmunity = 2;
+    [SerializeField] private GameObject player;
+    private float _immunityTimer;
+    private float _playerTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +46,8 @@ public class Sinkoilu : MonoBehaviour
         rigid = character.GetComponent<Rigidbody2D>();
         arrow.enabled = false;
 		_audioHandler = GetComponent<PlayerAudioHandler>();
+        _sinkoilu = GetComponent<Sinkoilu>();
+        player = this.gameObject;
         //transform.forward = Vector3.up;
     }
 
@@ -292,6 +301,32 @@ public class Sinkoilu : MonoBehaviour
         {
             isGrounded = true;
            // _audioHandler.PlaySplat();
+        }
+    }
+
+        void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if(_immunityTimer <= 0){
+            _immunityTimer = enemyImmunity;
+            _sinkoilu.rebelDown();
+            player.GetComponent<HealthSystem>().decreaseHealth();
+            _audioHandler.PlayImpact();
+            }
+        }
+        else if(collision.gameObject.CompareTag("Acid"))
+        {
+            if(_playerTimer <= 0){
+            _playerTimer = playerImmunity;
+            _sinkoilu.rebelUp();
+            player.GetComponent<HealthSystem>().decreaseHealth();
+            }
+        }
+        else
+        {
+            _sinkoilu.grabToCeiling();
+            _audioHandler.PlaySplat();
         }
     }
 }
