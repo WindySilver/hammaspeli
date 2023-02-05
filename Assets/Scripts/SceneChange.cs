@@ -21,7 +21,7 @@ public class SceneChange : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other){
-            SceneManager.LoadScene(newScene);
+    void OnTriggerEnter2D(Collider2D other){
+        SceneManager.LoadScene(newScene);
     }
 }
