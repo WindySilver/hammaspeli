@@ -209,8 +209,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mato
       objectReference: {fileID: 0}
+    - target: {fileID: 8596919700591589316, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 514843578}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1a0c8b368ad1a46990d64e32466b43, type: 3}
+--- !u!114 &292935771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2785098471211311624, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
+  m_PrefabInstance: {fileID: 1775735193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &399741673
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +310,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514843578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5251415328493695410, guid: 4c2e70d1a50cd4e93abf725bf50503f4, type: 3}
+  m_PrefabInstance: {fileID: 1775735193}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114226448
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,6 +943,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6134554996391367769, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 292935771}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
 --- !u!1001 &1775735193
@@ -1265,9 +1295,7 @@ MonoBehaviour:
   - {fileID: 1046624636724948417}
   - {fileID: 1046624637410058526}
   - {fileID: 1046624635608976744}
-  - {fileID: 1046624635430799081}
-  - {fileID: 1046624637167253186}
-  ExitnodeNmr: 3
+  ExitnodeNmr: 1
 --- !u!1 &1046624635608976744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046624635608976744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.76, y: 1.09, z: 0.01191405}
+  m_LocalPosition: {x: -3.61, y: -6.18, z: 0.01191405}
   m_LocalScale: {x: 0.46083, y: 0.46083, z: 0.46083}
   m_ConstrainProportionsScale: 0
   m_Children: []
