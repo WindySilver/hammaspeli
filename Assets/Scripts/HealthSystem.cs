@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
 
     public int maxHealth = 5;
     public TextMeshProUGUI healthText;
+    public MusicHandler music;
     private int currentHealth;
     private bool _dead = false;
 
@@ -29,6 +30,7 @@ public class HealthSystem : MonoBehaviour
     }
 
     void Defeated(){
+        music.PlayDeath();
         healthText.text = "You has been vanquished!";
         Object.Destroy(this.gameObject);
     }

@@ -44,6 +44,7 @@ public class MusicHandler : MonoBehaviour
 
 
     public void PlayDeath(){
+        _musicSource.Stop();
         var clip = Random.Range(0, _death.Count);
         _musicSource.clip = _death[clip];
         _musicSource.Play();
