@@ -11,14 +11,16 @@ public class WormMovement : MonoBehaviour
     private int nodeNmr;
     private float speed = 0.08f;
     private bool start;
+    private int exitNodeNmr;
 
     private void Start()
     {
         StartCoroutine(StartDelay());
         GameObject rata = GameObject.Find("Rata");
-        nodes1 = rata.GetComponent<Rata>().getNodes();
+        Rata rata1 = rata.GetComponent<Rata>();
+        nodes1 = rata1.getNodes();
         node = nodes1[0];
-        ;
+        exitNodeNmr = rata1.getExitNodeNmr();
     }
 
     // Update is called once per frame
@@ -28,11 +30,11 @@ public class WormMovement : MonoBehaviour
         {
             if(Vector3.Distance(node.transform.position,transform.position) < 0.1)
         {
-            if (nodeNmr +1 != nodes1.Length)
+            if (nodeNmr +1 != nodes1.Length - exitNodeNmr)
             {
                 nodeNmr++;
             }
-            else
+            else if(exitNodeNmr != 0)
             {
                 nodeNmr = 0;
             }
