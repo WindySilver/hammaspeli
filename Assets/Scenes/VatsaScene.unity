@@ -1302,7 +1302,7 @@ GameObject:
   - component: {fileID: 391380312}
   m_Layer: 0
   m_Name: mato_ruumis (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 395179007}
   m_Layer: 0
   m_Name: mato_ruumis (9)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 724629499}
   m_Layer: 0
   m_Name: mato_ruumis (4)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2081,7 +2081,7 @@ GameObject:
   - component: {fileID: 755596553}
   m_Layer: 0
   m_Name: mato_ruumis (8)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2289,7 +2289,7 @@ GameObject:
   - component: {fileID: 881517649}
   m_Layer: 0
   m_Name: mato_ruumis (7)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - component: {fileID: 895305026}
   m_Layer: 0
   m_Name: mato_ruumis (6)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2733,6 +2733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5550363127402106922, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5550363127402106927, guid: 6f9844ee31dfabf569b99594efd6ab9f, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3034,7 +3038,7 @@ GameObject:
   - component: {fileID: 1224463950}
   m_Layer: 0
   m_Name: mato_ruumis (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3158,7 +3162,7 @@ GameObject:
   - component: {fileID: 1234766321}
   m_Layer: 0
   m_Name: mato_perse
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3282,7 +3286,7 @@ GameObject:
   - component: {fileID: 1281394255}
   m_Layer: 0
   m_Name: mato_ruumis
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3406,7 +3410,7 @@ GameObject:
   - component: {fileID: 1303857679}
   m_Layer: 0
   m_Name: mato_ruumis (5)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3913,7 +3917,7 @@ GameObject:
   - component: {fileID: 1514106941}
   m_Layer: 0
   m_Name: mato_paa
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4037,7 +4041,7 @@ GameObject:
   - component: {fileID: 1623407253}
   m_Layer: 0
   m_Name: mato_ruumis (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4494,7 +4498,7 @@ GameObject:
   - component: {fileID: 1919778544}
   m_Layer: 0
   m_Name: Mato
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

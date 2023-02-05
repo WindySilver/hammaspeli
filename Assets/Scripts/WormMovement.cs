@@ -9,7 +9,7 @@ public class WormMovement : MonoBehaviour
     // Start is called before the first frame update
     private GameObject node;
     private int nodeNmr;
-    private float speed = 10;
+    private float speed = 0.08f;
     private bool start;
 
     private void Start()
@@ -37,11 +37,10 @@ public class WormMovement : MonoBehaviour
                 nodeNmr = 0;
             }
             node = nodes1[nodeNmr];
-        }
-        var step =  speed * Time.deltaTime; // calculate distance to move
+        } 
+            var step = speed; //* Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, node.transform.position, step);
-        Vector3 direction =  Vector3.RotateTowards(transform.forward, node.transform.position, 90, 90.0f);
-        
+        //Vector3 direction =  Vector3.RotateTowards(transform.forward, node.transform.position, 90, 90.0f);
         Vector3 targ = node.transform.position;
         Vector3 objectPos = transform.position;
         targ.x = targ.x - objectPos.x;
@@ -50,6 +49,7 @@ public class WormMovement : MonoBehaviour
         float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
+       
     }
     private IEnumerator StartDelay()
     {

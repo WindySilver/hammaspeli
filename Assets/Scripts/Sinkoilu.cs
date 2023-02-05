@@ -250,20 +250,22 @@ public class Sinkoilu : MonoBehaviour
         float forceY = Mathf.Clamp((Worldpos.y - transform.position.y) *3, -maxSpeed, maxSpeed);
         rigid.AddForce((new Vector2(forceX, forceY)), ForceMode2D.Impulse);
         //rigid.AddForce(((Worldpos2D - pos2D) *3), ForceMode2D.Impulse);
-        /*
-        Vector3 targ = Worldpos;
-        Vector3 objectPos = transform.position;
-        targ.x = targ.x - objectPos.x;
-        targ.y = targ.y - objectPos.y;
-
-        float angle = Mathf.Atan2(targ.y, targ.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        */
-        
-        //transform.rotation = Quaternion.LookRotation(Worldpos, Vector3.up);
-        
         transform.up = Worldpos2D - pos2D; 
         Debug.Log(lDirection*10);
+    }
+
+    public void rebelDown()
+    {
+        Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
+        //Vector2 down2D = new Vector2(transform.up.x, transform.up.y);
+        rigid.AddForce(((Vector2.down - pos2D)), ForceMode2D.Impulse);
+    }
+    
+    public void rebelUp()
+    {
+        Vector2 pos2D = new Vector2(transform.position.x, transform.position.y);
+        //Vector2 down2D = new Vector2(transform.up.x, transform.up.y);
+        rigid.AddForce(((Vector2.up - pos2D)), ForceMode2D.Impulse);
     }
     
     // See Order of Execution for Event Functions for information on FixedUpdate() and Update() related to physics queries
