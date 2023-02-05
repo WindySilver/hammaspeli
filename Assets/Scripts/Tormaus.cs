@@ -35,7 +35,7 @@ public class Tormaus : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (SceneManager.GetActiveScene().name == "SuuScene")
+        if (SceneManager.GetActiveScene().name != "SuuScene")
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
